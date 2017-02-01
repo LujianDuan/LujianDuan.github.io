@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>段路建的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="段路建的博客">
+<meta property="og:url" content="https://lujianduan.github.io/index.html">
+<meta property="og:site_name" content="段路建的博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="段路建的博客">
+  
+    <link rel="alternative" href="/atom.xml" title="段路建的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">段路建的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">记录成长中的点滴</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="lujianduan.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main">
+  
+    <article id="post-secret-of-the-array-in-c-language" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/28/secret-of-the-array-in-c-language/" class="article-date">
+  <time datetime="2017-01-28T10:39:13.000Z" itemprop="datePublished">2017-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/28/secret-of-the-array-in-c-language/">探查数组的秘密</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面我们大致了解了下C语言中的字符串其实就是字符组成的数组，那么，要弄明白字符串，看来是不得不搞清楚数组了，还是看例子先：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include &lt;string.h&gt;</span></div><div class="line"> </div><div class="line">void <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">    int a[10];</div><div class="line">    int *p1 = a;</div><div class="line">    void *p2 = &amp;a;</div><div class="line">    int *p3 = &amp;a[0];</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"p1:%d----p1+1:%d\n"</span>,p1,p1+1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"p2:%d----p2+1:%d\n"</span>,p2,p2+1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a:%d----&amp;a+1:%d\n"</span>,&amp;a,&amp;a+1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"p3:%d----p3+1:%d\n"</span>,p3,p3+1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> 以上代码输出结果：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p1:-1175211504—-p1+1:-1175211500 </div><div class="line">p2:-1175211504—-p2+1:-1175211503 </div><div class="line">&amp;a:-1175211504—-&amp;a+1:-1175211464 </div><div class="line">p3:-1175211504—-p3+1:-1175211500</div></pre></td></tr></table></figure></p>
+<p> 观察p1和p1+1的，发现，p1+1比p1大4，也就是p1+1,指针p1移动了4个字节。</p>
+<p> 观察p2和p2+1的，发现，p2+1比p2大4，也就是p1+1,指针p1移动了1个字节。</p>
+<p> 观察&amp;a和&amp;a+1的，发现，&amp;a+1比&amp;a大4，也就是&amp;a+1,指针&amp;a移动了40个字节。</p>
+<p> 观察p3和p3+1的，发现，p3+1比p3大4，也就是p3+1,指针p3移动了4个字节。</p>
+<p> 结论： 1、数组名等效于数组的首元素取地址，即，对于数组a[10],在写代码时，a与&amp;a[0]是等效的。 2、&amp;a步长为40，代表指针偏移了整个数组那么长，因为整个数组所占的字节数为40； 3、p2与&amp;a分别+1结果的不同，说明了，指针运算中的步长偏移量与指针所指向的内存空间的类型有关。第8行，由于强制规定了指针为void * 型，所以步长变成了1. 4、指针是一种数据类型，在不进行强制转换的情况下，指针的数据类型与他所指向的内存空间的数据类型一致。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/" data-id="ciymnld8h00002tpv9mrbkzqa" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言数组/">C语言数组</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-talk-about-the-string-of-C-language" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/28/talk-about-the-string-of-C-language/" class="article-date">
+  <time datetime="2017-01-28T10:11:06.000Z" itemprop="datePublished">2017-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/28/talk-about-the-string-of-C-language/">从C语言字符串说起</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例:"></a>代码示例:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include&lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include&lt;string.h&gt;</span></div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">    char buf[]=&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\0'</span>&#125;;</div><div class="line">    char *p1 = <span class="string">"hello,world!"</span>;</div><div class="line">    char *p2 = (char*)malloc(100);</div><div class="line">    strcpy(p2,<span class="string">"hello,world2!"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,buf);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p2);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以上代码输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">abc </div><div class="line">hello,world!</div><div class="line">hello,world2!</div></pre></td></tr></table></figure></p>
+<p>输出结果并没有什么区别，但是这里三个字符串却分别使用了三种不同类型的内存空间，第6行代码，申请了栈区的内存空间，并将字符a,b,c依次存到了所申请的内存空间。</p>
+<p>第7行，在栈区申请了4个字节的内存空间(变量p1),并把p1指向字符串”hello,world!”所在的内存首地址。那么，”hello,world!”存在什么地方呢？答案是，存在了全局区。</p>
+<p>第8行，在栈区分配了4个字节的内存空间(变量p2)，在堆区分配了100个字节的空间，把p指向堆区空间的首地址，第9行，往堆区申请的内存空间拷贝了字符串”hello,world2!”</p>
+<p>尝试改变三个字符串的其中一个字符，我们，发现，全局区的字符串不让修改，其它两个区的修改，没有问题。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include&lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include&lt;string.h&gt;</span></div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">        char buf[] =&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\0'</span>&#125;;</div><div class="line">        char * p1 = <span class="string">"hello,world!"</span>;</div><div class="line">        char * p2 = (char *)malloc(100);</div><div class="line">        strcpy(p2, <span class="string">"hello,world2!"</span>);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buf);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p1);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p2);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        buf[1] = <span class="string">'d'</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buf);</div><div class="line">        //<span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        //p1[1]=<span class="string">'d'</span>;//Segmentation fault</div><div class="line">        //<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p1);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        p2[1] = <span class="string">'d'</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p2);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>我们可以看出，关于C语言的字符串，保存在不同的内存区，进行相同的操作，结果是不一样的，可以说，学习C语言的精髓，就是学习如何操作内存，随时明白自己当下在操作的内存区域的特点。后面我们将会陆续跟进内存四区的研究。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/" data-id="ciymnldbw00042tpvwugq56pl" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/27/hello-world/" class="article-date">
+  <time datetime="2017-01-27T06:47:48.295Z" itemprop="datePublished">2017-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/27/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/01/27/hello-world/" data-id="ciymnld9700012tpvle32wjkv" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/01/27/hello-world/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/01/28/secret-of-the-array-in-c-language/">探查数组的秘密</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/28/talk-about-the-string-of-C-language/">从C语言字符串说起</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/27/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
+          </li>
+        
+          <li>
+            <a href="http://reqianduan.com" target="_blank">热前端</a>
+          </li>
+        
+          <li>
+            <a href="http://yuancheng.work" target="_blank">远程.work</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 段路建<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
