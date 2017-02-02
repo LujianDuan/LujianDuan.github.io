@@ -4,14 +4,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/1 | 段路建的博客</title>
+  <title>vim-xshell-支持256颜色 | 段路建的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="段路建的博客">
-<meta property="og:url" content="https://lujianduan.github.io/archives/2017/01/index.html">
+  <meta name="description" content="很多人想要在linux下直接用vim开发，但是那个难受，除了快捷键之外的原因，我想，最难受的就是那色彩，眼睛完全无法接受。这篇博文主要是记录了为使用xshell的穷逼们快速打造一个看起来还不错的vim-ide。看下效果先：首先，xshell默认的配色是8位的，土黑色，很不好看，我们可以用命令tput colors查看：12[developer@localhost ~]$ tput colors8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim-xshell-支持256颜色">
+<meta property="og:url" content="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/index.html">
 <meta property="og:site_name" content="段路建的博客">
+<meta property="og:description" content="很多人想要在linux下直接用vim开发，但是那个难受，除了快捷键之外的原因，我想，最难受的就是那色彩，眼睛完全无法接受。这篇博文主要是记录了为使用xshell的穷逼们快速打造一个看起来还不错的vim-ide。看下效果先：首先，xshell默认的配色是8位的，土黑色，很不好看，我们可以用命令tput colors查看：12[developer@localhost ~]$ tput colors8">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/vim-color.png">
+<meta property="og:updated_time" content="2017-02-02T09:20:18.517Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="段路建的博客">
+<meta name="twitter:title" content="vim-xshell-支持256颜色">
+<meta name="twitter:description" content="很多人想要在linux下直接用vim开发，但是那个难受，除了快捷键之外的原因，我想，最难受的就是那色彩，眼睛完全无法接受。这篇博文主要是记录了为使用xshell的穷逼们快速打造一个看起来还不错的vim-ide。看下效果先：首先，xshell默认的配色是8位的，土黑色，很不好看，我们可以用命令tput colors查看：12[developer@localhost ~]$ tput colors8">
+<meta name="twitter:image" content="https://lujianduan.github.io/img/images/vim-color.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,78 +71,67 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/28/secret-of-the-array-in-c-language/" class="archive-article-date">
-  <time datetime="2017-01-28T10:39:13.000Z" itemprop="datePublished">1月 28</time>
+      <section id="main"><article id="post-vim-xshell-support-256-color" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/02/vim-xshell-support-256-color/" class="article-date">
+  <time datetime="2017-02-02T08:52:11.000Z" itemprop="datePublished">2017-02-02</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/28/secret-of-the-array-in-c-language/">探查数组的秘密</a>
+    <h1 class="article-title" itemprop="name">
+      vim-xshell-支持256颜色
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/28/talk-about-the-string-of-C-language/" class="archive-article-date">
-  <time datetime="2017-01-28T10:11:06.000Z" itemprop="datePublished">1月 28</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/28/talk-about-the-string-of-C-language/">从C语言字符串说起</a>
-    </h1>
-  
+        <p>很多人想要在linux下直接用vim开发，但是那个难受，除了快捷键之外的原因，我想，最难受的就是那色彩，眼睛完全无法接受。这篇博文主要是记录了为使用xshell的穷逼们快速打造一个看起来还不错的vim-ide。<br>看下效果先：<br><img src="/img/images/vim-color.png" alt="vim图片"><br>首先，xshell默认的配色是8位的，土黑色，很不好看，我们可以用命令tput colors查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[developer@localhost ~]$ tput colors</div><div class="line">8</div></pre></td></tr></table></figure></p>
+<p>一、修改/etc/profile 文件或者~/.bashrc文件，再最后面添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if [ -e /usr/share/terminfo/x/xterm-256color ]; then</div><div class="line">    export TERM=&apos;xterm-256color&apos;</div><div class="line">else</div><div class="line">    export TERM=&apos;xterm-color&apos;</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>然后执行：<br>source /etc/profile<br>或者<br>source ~/.bashrc<br>让修改生效。<br>二、修改vim配置文件，让vim支持256位颜色。<br>打开~/.vim/vimrc文件，添加:<br>set t_Co=256<br>好了，执行tput colors看一下吧，如果输出256，表示配置生效，可以尽情的使用vim下的配色方案了。<br>还不会配置vim?使用 <a href="https://github.com/LujianDuan/vim" target="_blank" rel="external">快速vim插件</a>快速配置你自己的vim工作台吧！<br>推荐配色插件：<br>‘flazz/vim-colorschemes’<br> ‘ueaner/molokai’ </p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/27/hello-world/" class="archive-article-date">
-  <time datetime="2017-01-27T06:47:48.295Z" itemprop="datePublished">1月 27</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/27/hello-world/">Hello World</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/" data-id="ciyo68r1s0008tjpvlv28m3bh" class="article-share-link">Share</a>
+      
 
-    </header>
+      
+        <a href="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/02/02/The-function-of-string-in-javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript中字符串相关的函数积累</div>
+    </a>
   
+</nav>
 
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/02/vim-xshell-support-256-color/" data-title="vim-xshell-支持256颜色" data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/"></div>
+  </section>
 </section>
       
       <aside id="sidebar">
