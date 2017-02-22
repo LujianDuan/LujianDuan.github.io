@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>记一次mysql统计数据的优化过程 | 段路建的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记一次mysql统计数据的优化过程目标控制器：http://xxxx.com/data/index (内部网站，不便透露地址)缓慢原因分析：网站优化，大多时候瓶颈都是出在mysql的查询上，特别是对于一些复杂的统计，当数据量大起来之后，各种连表，串库查询，更是如此。所以，不用看代码，首先就来开启mysql的慢查询日志，果真发现了好几天查询巨慢的日志。慢sql如下：12345678910select">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次mysql统计数据的优化过程">
+<meta property="og:url" content="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/index.html">
+<meta property="og:site_name" content="段路建的博客">
+<meta property="og:description" content="记一次mysql统计数据的优化过程目标控制器：http://xxxx.com/data/index (内部网站，不便透露地址)缓慢原因分析：网站优化，大多时候瓶颈都是出在mysql的查询上，特别是对于一些复杂的统计，当数据量大起来之后，各种连表，串库查询，更是如此。所以，不用看代码，首先就来开启mysql的慢查询日志，果真发现了好几天查询巨慢的日志。慢sql如下：12345678910select">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_1.png">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_2.png">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_3.png">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_4.png">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_5.png">
+<meta property="og:image" content="https://lujianduan.github.io/img/images/103_sql_6.png">
+<meta property="og:updated_time" content="2017-02-22T10:18:53.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次mysql统计数据的优化过程">
+<meta name="twitter:description" content="记一次mysql统计数据的优化过程目标控制器：http://xxxx.com/data/index (内部网站，不便透露地址)缓慢原因分析：网站优化，大多时候瓶颈都是出在mysql的查询上，特别是对于一些复杂的统计，当数据量大起来之后，各种连表，串库查询，更是如此。所以，不用看代码，首先就来开启mysql的慢查询日志，果真发现了好几天查询巨慢的日志。慢sql如下：12345678910select">
+<meta name="twitter:image" content="https://lujianduan.github.io/img/images/103_sql_1.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">段路建的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">沧海何其大，一粟何其小。小之小极为大，大之大极为小。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/memory/">回忆</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="lujianduan.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-An-optimization-of-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/22/An-optimization-of-mysql/" class="article-date">
+  <time datetime="2017-02-22T09:56:56.000Z" itemprop="datePublished">2017-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次mysql统计数据的优化过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="记一次mysql统计数据的优化过程"><a href="#记一次mysql统计数据的优化过程" class="headerlink" title="记一次mysql统计数据的优化过程"></a>记一次mysql统计数据的优化过程</h3><h4 id="目标控制器："><a href="#目标控制器：" class="headerlink" title="目标控制器："></a>目标控制器：</h4><p><a href="http://xxxx.com/data/index" target="_blank" rel="external">http://xxxx.com/data/index</a> (内部网站，不便透露地址)<br>缓慢原因分析：<br>网站优化，大多时候瓶颈都是出在mysql的查询上，特别是对于一些复杂的统计，当数据量大起来之后，各种连表，串库查询，更是如此。<br>所以，不用看代码，首先就来开启mysql的慢查询日志，果真发现了好几天查询巨慢的日志。慢sql如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">select p.reply_userid,p.reply_user,count(1) as askposts from j1_ask_threads t </div><div class="line">join j1_ask_posts p </div><div class="line">on t.tid=p.tid </div><div class="line"><span class="built_in">where</span> p.rpid = 0 </div><div class="line">and p.status=1 </div><div class="line">`and p.reply_userid <span class="keyword">in</span>(3554226,3554229) `</div><div class="line">and unix_timestamp(p.posttime) &gt;= 1485878400 </div><div class="line">and unix_timestamp(p.posttime) &lt; 1487692800 </div><div class="line">group by p.reply_userid </div><div class="line">order by askposts desc <span class="built_in">limit</span> 0,75;</div></pre></td></tr></table></figure></p>
+<p>注意sql中着重的部分，该部分ids非常多，有差不多至少5000多个。真实的查询时间为：<br><code># Query_time: 38.5</code><br>总的数据量为：<br><img src="/img/images/103_sql_1.png" alt="记录条数"><br>表结构：<br><img src="/img/images/103_sql_2.png" alt="表结构"></p>
+<p>用explain查看一下扫表行数和索引使用情况，发现扫表行数为：132032行。索引使用了rpid索引。<br>本sql主要的查询过滤条件为 reply_userid 因为这个字段用了5K之多的ids进行in查询操作。而从业务上分析，这个in操作又是不得不进行的。所以一开始，我把索引重心全都放到了reply_userid字段上。<br>而本查询刚好也用上了reply_userid。所以我放弃了对改sql索引方面的优化。转而进行从业务上进行修正。<br>业务熟悉：<br>从业务上看，本次操作的目的是：<br>1、从A库中的a表读取满足条件的用户，并取得这些用户的ids。<br>2、将拿到的ids到B库中的b表进行条件筛选。得到最终结果，再进行数据组装。<br>经过对业务的深入考察，初步出了两个方案。<br>方案一：(调整业务查询顺序)<br>由于步骤1查询到的数据量过大，再放入步骤2中查询，才导致查询过慢，那么如果可以把in查询中的ids数量减少，查询不就变快了吗？<br>所以，我想到的方案1是，先到B库中查询符合条件的数据。再把这些数据拿到A库中进行过滤，并得到最终结果。<br>方案二：<br>建一张统计表，按日统计数据，在符合条件的数据修改的接口处，把统计的数据汇总的统计表中，这是架构中最常规的做法，但是由于现在数据量已经上来了，系统涉及到的地方很多，这样做修改起来耗费的人力物力很多。所以该方案放到终极备用方案里面。<br>接下来就按照方案一的思路进行优化，发现效果并不明显，因为在第一步的操作中，虽然去除了in操作，但是其它字段也没用上索引啊！于是我考虑新建索引。我考虑到 <code>posttime</code> timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT ‘回复时间’,<br>这一字段，发现每次筛选如果带上时间的话，再以这个时间为主，建立一个索引的话，可能速度会快上许多！因为索引的原理是在磁盘上按照建立的索引进行排序，把字段按顺序存储好。In查询之所以慢，是因为in里面的ids都是分散的，导致扫描的表会很多。而=，&gt;,&lt;操作不一样，是连续的。<br>但是，谁建的表：<br>时间不是应该用int型吗？常识！！！<br>我给大家看一下，为什么不要用timestamp,<br><img src="/img/images/103_sql_3.png" alt="timestamp"><br>timestamp虽然底层也是整型，但是导致程序在进行查询的时候很麻烦，一般的程序员即使知道这里需要建立索引，他的程序也用不上。<br>看看我们原来是怎么做的。<br>这是最终的sql语句，<br>and unix_timestamp(p.posttime) &gt;= 1485878400<br>and unix_timestamp(p.posttime) &lt; 1487692800<br>这是原程序，<br><img src="/img/images/103_sql_4.png" alt="原程序"><br>朋友们，看到了吗？<br>先把日期转换成时间戳，再跟mysql里面的字段进行对比，但是，mysql里imestamp类型的是日期格式的，所以也需要用内置函数unix_timestamp进行转换，结果，结果就是，我建了一万个索引，但是一个也没用上。<br>好了，说改就改，把程序对应的地方全部换成字符串日期格式，进行查询。对应sql是：<br>p.posttime &gt;= 2017-02-14 18:19:23  and p.posttime &lt;  2017-02-21 18:19:23<br>刷新页面，我靠，很遗憾！激动人心的时刻并没有到来。<br>报错了，sql语句错误，好吧，把sql复制到命令行直接执行，发现出错的地方主要是2017-02-14 18:19:23这个地方，我明白了，字符串加单引号的问题。<br>好了，怎么加单引号呢？<br>看php代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$start_date</span> = <span class="string">'\'</span><span class="string">' . date('</span>Y-m<span class="_">-d</span> H:i:s<span class="string">', $starttime) . '</span>\<span class="string">''</span>;</div><div class="line"><span class="variable">$end_date</span> = <span class="string">'\'</span><span class="string">' . date('</span>Y-m<span class="_">-d</span> H:i:s<span class="string">', $endtime) . '</span>\<span class="string">''</span>;</div></pre></td></tr></table></figure></p>
+<p>很简单，转义就好了。<br>写到这里，再吐槽一下，为毛时间字段的设计有的地方又是int型呢？导致我改也得一个地方一个地方对照表看准了才能改啊！哥们，下次php程序设计模型的时候，时间字段请统一用int!谢谢！<br>改到后面，发现，方案一中原来没预料到的问题暴露出来了，什么问题呢？<br>1是分页问题；<br>2是逻辑修改的复杂程度。<br>所以，我决定git checkout回原来的代码,还是先走下原来的逻辑。<br>好了，随后的事情就是优化了下原来的代码结构，把冗余的代码剔除。<br>最后，我决定再加点料。综合所有与该表有关的查询，建立一个大家都用得上的组合索引。<br>KEY <code>posttime</code> (<code>posttime</code>,<code>rpid</code>,<code>status</code>,<code>reply_userid</code>) USING BTREE<br>这就是最后建好的索引，测试一下，好了，原来的38秒变成了现在的0.4秒，虽然从explain的结果上看，还没有优化到最优，因为还用了文件排序和临时表。<br><img src="/img/images/103_sql_5.png" alt="explain"><br>但是由于我们并没有冗余统计字段，所以，该部分已经没法进一步优化。</p>
+<p>==============================我是华丽的分割线============================</p>
+<p>#开启mysql的慢查询日志的方法：</p>
+<p>###1、 登录mysql;</p>
+<p>###2、 show variables like “%slow%”;<br><img src="/img/images/103_sql_6.png" alt="慢查询"><br>我的慢查询已经开启，慢查询日志位置为：/var/lib/mysql/localhost-slow.log</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/" data-id="cizgtc6rd0000lepvv2gks9n4" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql优化/">mysql优化</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/04/the-exception-in-php/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">讨论php中异常的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/02/22/An-optimization-of-mysql/" data-title="记一次mysql统计数据的优化过程" data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitdiff/">gitdiff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript字符串函数/">javascript字符串函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql优化/">mysql优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php异常/">php异常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a> <a href="/tags/gitdiff/" style="font-size: 10px;">gitdiff</a> <a href="/tags/javascript字符串函数/" style="font-size: 10px;">javascript字符串函数</a> <a href="/tags/mysql优化/" style="font-size: 10px;">mysql优化</a> <a href="/tags/php异常/" style="font-size: 10px;">php异常</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/22/An-optimization-of-mysql/">记一次mysql统计数据的优化过程</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/04/the-exception-in-php/">讨论php中异常的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/02/git-diff-setting/">git配置版本比较工具为vimdiff</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/02/vim-xshell-support-256-color/">vim-xshell-支持256颜色</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/02/The-function-of-string-in-javascript/">javascript中字符串相关的函数积累</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/" target="_blank">沧海一粟</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 段路建<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/memory/" class="mobile-nav-link">回忆</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"canghaiyili"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
