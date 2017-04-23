@@ -67,6 +67,113 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-how-to-modify-the-no-root-user-s-ulimit-n" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/" class="article-date">
+  <time datetime="2017-04-23T19:23:07.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/">如何修改非root用户的ulimit -n的值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.打开/etc/security/limits.conf，在里面添加如下内容</p>
+<ul>
+<li>soft nofile 65535</li>
+<li>hard nofile 65535</li>
+</ul>
+<p>其中*表示所有用户  nofile表示最大文件句柄数,表示能够打开的最大文件数目</p>
+<p>2.编辑/etc/pam.d/common-session，添加如下内容<br>session required pam_limits.so<br>3.编辑/etc/profile，添加如下内容<br>ulimit -SHn 65535</p>
+<p>然后重新启动机器,再利用ulimit -n查看文件句柄数,发现文件句柄数变为65535</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/" data-id="cj1v32uvv00009ify0a2zbb6o" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ulimit-modify/">ulimit-modify</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-study-plan-2017" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/17/study-plan-2017/" class="article-date">
+  <time datetime="2017-03-17T02:49:43.000Z" itemprop="datePublished">2017-03-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/17/study-plan-2017/">study-plan-2017</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>深入Mysql的学习<ol>
+<li>索引原理深入(已完成)</li>
+</ol>
+</li>
+<li>学习Go语言</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/03/17/study-plan-2017/" data-id="cj1v32uw900059ifyzh9ri8nt" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/03/17/study-plan-2017/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习计划/">学习计划</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-An-optimization-of-mysql" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/22/An-optimization-of-mysql/" class="article-date">
@@ -102,7 +209,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/" data-id="cizgtc6rd0000lepvv2gks9n4" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/" data-id="cj1v32uw000019ify0iuv1n8h" class="article-share-link">Share</a>
       
 
       
@@ -170,7 +277,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/04/the-exception-in-php/" data-id="cizgtc6sa0008lepvfhmrv0zh" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/04/the-exception-in-php/" data-id="cj1v32uw700049ifyz392y4ri" class="article-share-link">Share</a>
       
 
       
@@ -217,7 +324,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/git-diff-setting/" data-id="cizgtc6rs0003lepv8ls2pryx" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/git-diff-setting/" data-id="cj1v32uxn000s9ifyp4zpyqqq" class="article-share-link">Share</a>
       
 
       
@@ -264,7 +371,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/" data-id="cizgtc6tk000jlepvkisx2z69" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/" data-id="cj1v32uxr000t9ifytedxucos" class="article-share-link">Share</a>
       
 
       
@@ -316,7 +423,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/The-function-of-string-in-javascript/" data-id="cizgtc6rj0001lepvcmx569my" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/The-function-of-string-in-javascript/" data-id="cj1v32uwz000e9ifyz8uu8lrj" class="article-share-link">Share</a>
       
 
       
@@ -375,7 +482,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/01/the-important-things-in-my-life/" data-id="cizgtc6to000klepvv9tvvpff" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/01/the-important-things-in-my-life/" data-id="cj1v32uwh00069ify586njbkz" class="article-share-link">Share</a>
       
 
       
@@ -426,7 +533,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/" data-id="cizgtc6s60005lepv62isxg7e" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/" data-id="cj1v32uwq000c9ifyrougpz1m" class="article-share-link">Share</a>
       
 
       
@@ -477,7 +584,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/" data-id="cizgtc6rt0004lepv4pwyttgd" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/" data-id="cj1v32uwj00099ifygh9pwueq" class="article-share-link">Share</a>
       
 
       
@@ -494,58 +601,11 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/27/hello-world/" class="article-date">
-  <time datetime="2017-01-27T06:47:48.295Z" itemprop="datePublished">2017-01-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="https://lujianduan.github.io/2017/01/27/hello-world/" data-id="cizgtc6ta000ilepvymkg8rw4" class="article-share-link">Share</a>
-      
-
-      
-        <a href="https://lujianduan.github.io/2017/01/27/hello-world/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 </section>
       
       <aside id="sidebar">
@@ -554,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitdiff/">gitdiff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript字符串函数/">javascript字符串函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql优化/">mysql优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php异常/">php异常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitdiff/">gitdiff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript字符串函数/">javascript字符串函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql优化/">mysql优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php异常/">php异常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulimit-modify/">ulimit-modify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习计划/">学习计划</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -563,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a> <a href="/tags/gitdiff/" style="font-size: 10px;">gitdiff</a> <a href="/tags/javascript字符串函数/" style="font-size: 10px;">javascript字符串函数</a> <a href="/tags/mysql优化/" style="font-size: 10px;">mysql优化</a> <a href="/tags/php异常/" style="font-size: 10px;">php异常</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a>
+      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a> <a href="/tags/gitdiff/" style="font-size: 10px;">gitdiff</a> <a href="/tags/javascript字符串函数/" style="font-size: 10px;">javascript字符串函数</a> <a href="/tags/mysql优化/" style="font-size: 10px;">mysql优化</a> <a href="/tags/php异常/" style="font-size: 10px;">php异常</a> <a href="/tags/ulimit-modify/" style="font-size: 10px;">ulimit-modify</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习计划/" style="font-size: 10px;">学习计划</a>
     </div>
   </div>
 
@@ -572,7 +632,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -584,6 +644,14 @@
       <ul>
         
           <li>
+            <a href="/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/">如何修改非root用户的ulimit -n的值</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/17/study-plan-2017/">study-plan-2017</a>
+          </li>
+        
+          <li>
             <a href="/2017/02/22/An-optimization-of-mysql/">记一次mysql统计数据的优化过程</a>
           </li>
         
@@ -593,14 +661,6 @@
         
           <li>
             <a href="/2017/02/02/git-diff-setting/">git配置版本比较工具为vimdiff</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/02/vim-xshell-support-256-color/">vim-xshell-支持256颜色</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/02/The-function-of-string-in-javascript/">javascript中字符串相关的函数积累</a>
           </li>
         
       </ul>
