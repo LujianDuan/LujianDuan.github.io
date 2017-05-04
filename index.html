@@ -67,6 +67,59 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-mysql-innodb-myisam-index" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/04/mysql-innodb-myisam-index/" class="article-date">
+  <time datetime="2017-05-04T03:07:37.000Z" itemprop="datePublished">2017-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/04/mysql-innodb-myisam-index/">mysql中innodb和myisam索引的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>mysql中innodb的索引：次索引指向对主索引的引用;<br> MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，这棵树的叶节点data域保存了完整的数据记录。这个索引的key是数据表的主键，因此InnoDB表数据文件本身就是主索引。<br> innodb的次索引保存索引键和主索引的id.</li>
+<li>mysql中myisam索引：主索引和次索引都指向物理行;<br><img src="img/images/myisam.png" alt="MyISAM索引示意图"></li>
+</ol>
+<p>参考文档：<br><img src="/pdf/mysql_myisam_innodb.pdf" alt="MyISAM和InnoDB的索引实现 - 立超的专栏 - 博客园"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://lujianduan.github.io/2017/05/04/mysql-innodb-myisam-index/" data-id="cj29v83670003oefy69y8zf30" class="article-share-link">Share</a>
+      
+
+      
+        <a href="https://lujianduan.github.io/2017/05/04/mysql-innodb-myisam-index/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql索引/">mysql索引</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-how-to-modify-the-no-root-user-s-ulimit-n" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/" class="article-date">
@@ -106,7 +159,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/" data-id="cj1v32uvv00009ify0a2zbb6o" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/" data-id="cj29v836q0006oefyfpbxdcvt" class="article-share-link">Share</a>
       
 
       
@@ -157,7 +210,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/03/17/study-plan-2017/" data-id="cj1v32uw900059ifyzh9ri8nt" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/03/17/study-plan-2017/" data-id="cj29v836u0009oefy9e1umg8h" class="article-share-link">Share</a>
       
 
       
@@ -209,7 +262,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/" data-id="cj1v32uw000019ify0iuv1n8h" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/22/An-optimization-of-mysql/" data-id="cj29v83450000oefya82uxhxe" class="article-share-link">Share</a>
       
 
       
@@ -277,7 +330,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/04/the-exception-in-php/" data-id="cj1v32uw700049ifyz392y4ri" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/04/the-exception-in-php/" data-id="cj29v837c000doefyw2gh4hrw" class="article-share-link">Share</a>
       
 
       
@@ -324,7 +377,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/git-diff-setting/" data-id="cj1v32uxn000s9ifyp4zpyqqq" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/git-diff-setting/" data-id="cj29v836d0004oefyb8qxwx68" class="article-share-link">Share</a>
       
 
       
@@ -371,7 +424,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/" data-id="cj1v32uxr000t9ifytedxucos" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/vim-xshell-support-256-color/" data-id="cj29v83aw0011oefymnzlocye" class="article-share-link">Share</a>
       
 
       
@@ -423,7 +476,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/02/The-function-of-string-in-javascript/" data-id="cj1v32uwz000e9ifyz8uu8lrj" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/02/The-function-of-string-in-javascript/" data-id="cj29v834i0001oefy4leic8fk" class="article-share-link">Share</a>
       
 
       
@@ -482,7 +535,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/02/01/the-important-things-in-my-life/" data-id="cj1v32uwh00069ify586njbkz" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/02/01/the-important-things-in-my-life/" data-id="cj29v837f000goefy8x4jhuv2" class="article-share-link">Share</a>
       
 
       
@@ -533,7 +586,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/" data-id="cj1v32uwq000c9ifyrougpz1m" class="article-share-link">Share</a>
+        <a data-url="https://lujianduan.github.io/2017/01/28/secret-of-the-array-in-c-language/" data-id="cj29v8398000woefylwca1kw9" class="article-share-link">Share</a>
       
 
       
@@ -542,57 +595,6 @@
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言数组/">C语言数组</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-talk-about-the-string-of-C-language" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/28/talk-about-the-string-of-C-language/" class="article-date">
-  <time datetime="2017-01-28T10:11:06.000Z" itemprop="datePublished">2017-01-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/28/talk-about-the-string-of-C-language/">从C语言字符串说起</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例:"></a>代码示例:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include&lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include&lt;string.h&gt;</span></div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">    char buf[]=&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\0'</span>&#125;;</div><div class="line">    char *p1 = <span class="string">"hello,world!"</span>;</div><div class="line">    char *p2 = (char*)malloc(100);</div><div class="line">    strcpy(p2,<span class="string">"hello,world2!"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,buf);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p1);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p2);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>以上代码输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">abc </div><div class="line">hello,world!</div><div class="line">hello,world2!</div></pre></td></tr></table></figure></p>
-<p>输出结果并没有什么区别，但是这里三个字符串却分别使用了三种不同类型的内存空间，第6行代码，申请了栈区的内存空间，并将字符a,b,c依次存到了所申请的内存空间。</p>
-<p>第7行，在栈区申请了4个字节的内存空间(变量p1),并把p1指向字符串”hello,world!”所在的内存首地址。那么，”hello,world!”存在什么地方呢？答案是，存在了全局区。</p>
-<p>第8行，在栈区分配了4个字节的内存空间(变量p2)，在堆区分配了100个字节的空间，把p指向堆区空间的首地址，第9行，往堆区申请的内存空间拷贝了字符串”hello,world2!”</p>
-<p>尝试改变三个字符串的其中一个字符，我们，发现，全局区的字符串不让修改，其它两个区的修改，没有问题。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line"><span class="comment">#include&lt;stdlib.h&gt;</span></div><div class="line"><span class="comment">#include&lt;string.h&gt;</span></div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">        char buf[] =&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'\0'</span>&#125;;</div><div class="line">        char * p1 = <span class="string">"hello,world!"</span>;</div><div class="line">        char * p2 = (char *)malloc(100);</div><div class="line">        strcpy(p2, <span class="string">"hello,world2!"</span>);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buf);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p1);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p2);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        buf[1] = <span class="string">'d'</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buf);</div><div class="line">        //<span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        //p1[1]=<span class="string">'d'</span>;//Segmentation fault</div><div class="line">        //<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,p1);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"=================================\n"</span>);</div><div class="line">        p2[1] = <span class="string">'d'</span>;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p2);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>我们可以看出，关于C语言的字符串，保存在不同的内存区，进行相同的操作，结果是不一样的，可以说，学习C语言的精髓，就是学习如何操作内存，随时明白自己当下在操作的内存区域的特点。后面我们将会陆续跟进内存四区的研究。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/" data-id="cj1v32uwj00099ifygh9pwueq" class="article-share-link">Share</a>
-      
-
-      
-        <a href="https://lujianduan.github.io/2017/01/28/talk-about-the-string-of-C-language/#ds-thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a></li></ul>
 
     </footer>
   </div>
@@ -614,7 +616,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitdiff/">gitdiff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript字符串函数/">javascript字符串函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql优化/">mysql优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php异常/">php异常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulimit-modify/">ulimit-modify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习计划/">学习计划</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言字符串-指针/">C语言字符串  指针</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言数组/">C语言数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitdiff/">gitdiff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript字符串函数/">javascript字符串函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql优化/">mysql优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql索引/">mysql索引</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php异常/">php异常</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulimit-modify/">ulimit-modify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习计划/">学习计划</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -623,7 +625,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a> <a href="/tags/gitdiff/" style="font-size: 10px;">gitdiff</a> <a href="/tags/javascript字符串函数/" style="font-size: 10px;">javascript字符串函数</a> <a href="/tags/mysql优化/" style="font-size: 10px;">mysql优化</a> <a href="/tags/php异常/" style="font-size: 10px;">php异常</a> <a href="/tags/ulimit-modify/" style="font-size: 10px;">ulimit-modify</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习计划/" style="font-size: 10px;">学习计划</a>
+      <a href="/tags/C语言字符串-指针/" style="font-size: 10px;">C语言字符串  指针</a> <a href="/tags/C语言数组/" style="font-size: 10px;">C语言数组</a> <a href="/tags/gitdiff/" style="font-size: 10px;">gitdiff</a> <a href="/tags/javascript字符串函数/" style="font-size: 10px;">javascript字符串函数</a> <a href="/tags/mysql优化/" style="font-size: 10px;">mysql优化</a> <a href="/tags/mysql索引/" style="font-size: 10px;">mysql索引</a> <a href="/tags/php异常/" style="font-size: 10px;">php异常</a> <a href="/tags/ulimit-modify/" style="font-size: 10px;">ulimit-modify</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/学习计划/" style="font-size: 10px;">学习计划</a>
     </div>
   </div>
 
@@ -632,7 +634,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -642,6 +644,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/05/04/mysql-innodb-myisam-index/">mysql中innodb和myisam索引的理解</a>
+          </li>
         
           <li>
             <a href="/2017/04/24/how-to-modify-the-no-root-user-s-ulimit-n/">如何修改非root用户的ulimit -n的值</a>
@@ -657,10 +663,6 @@
         
           <li>
             <a href="/2017/02/04/the-exception-in-php/">讨论php中异常的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/02/git-diff-setting/">git配置版本比较工具为vimdiff</a>
           </li>
         
       </ul>
